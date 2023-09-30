@@ -1,4 +1,6 @@
 ---
+export const prerender = false
+
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Button from '../../components/Button.astro'
 import { getPortfolioById } from '../../services/api/portfolio'
@@ -8,7 +10,6 @@ const data = await getPortfolioById(id)
 if(!data) return Astro.redirect("/")
 const { attributes: { title, description, image, url, skills } } = data
 
-export const prerender = false
 ---
 
 <BaseLayout title={title}>

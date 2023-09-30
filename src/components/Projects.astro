@@ -1,9 +1,10 @@
 ---
+export const prerender = false
+
 import Button from './Button.astro'
 import { getPortfolios } from '../services/api/portfolio'
 
 const { data } = (await getPortfolios()) ?? { data: null }
-export const prerender = false
 ---
 
 <section class="portfolio">
