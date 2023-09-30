@@ -1,0 +1,132 @@
+---
+import Button from './Button.astro'
+import { getPortfolios } from '../services/api/portfolio'
+
+const { data } = (await getPortfolios()) ?? { data: null }
+export const prerender = false
+---
+
+<section class="portfolio">
+  <div class="container">
+    <div class="portfolio__content">
+      <h1 class="title">Portfolio</h1>
+      {
+        data?.map(({ id, attributes: { title, skills, image } }) => {
+          return (
+            <div class="card">
+              <div class="card-body">
+                <img
+                  src={image.data.attributes.url}
+                  alt={title}
+                  transition:name={`portfolio-${id}`}
+                />
+              </div>
+              <div class="card__footer">
+                <h4 transition:name={`portfolio-${title}`}>{title}.</h4>
+                <div
+                  class="card__skills skills"
+                  transition:name={`skills-${title}`}
+                >
+                  {skills.map((skill) => {
+                    return <small>{skill}</small>
+                  })}
+                </div>
+                <div class="card__description">
+                  <Button link={`/portfolio/${id}`} title="Read more" />
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    .portfolio__content {
+      min-width: 100%;
+      height: 100%;
+      writing-mode: vertical-lr;
+      display: grid;
+      background-color: var(--bg-green);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: 100px;
+      color: #000;
+      gap: 1.5rem;
+      grid-auto-flow: dense;
+
+      .title {
+        grid-column: span 2;
+        grid-row: span 1;
+        font-size: 6vh;
+      }
+      .card {
+        writing-mode: horizontal-tb;
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--border-radius);
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+
+        .card-body {
+          height: 100%;
+
+          & img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            border-radius: var(--border-radius);
+            transition: transform 0.3s ease;
+          }
+        }
+
+        .card__footer {
+          width: 100%;
+          padding: 20px;
+          position: absolute;
+          left: 0;
+          bottom: -100%;
+          background-color: var(--bg-card-dark);
+          transition: bottom 0.5s ease;
+          color: var(--color-white);
+
+          .card__description {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+
+        &:hover {
+          & img {
+            transform: scale(1.1);
+          }
+          .card__footer {
+            bottom: 0;
+          }
+        }
+
+        &:nth-child(4n) {
+          grid-column: span 2;
+          grid-row: span 3;
+        }
+        &:nth-child(4n - 1) {
+          grid-column: span 2;
+          grid-row: span 4;
+        }
+        &:nth-child(4n - 2) {
+          grid-column: span 2;
+          grid-row: span 3;
+        }
+        &:nth-child(4n - 3) {
+          grid-column: span 4;
+          grid-row: span 3;
+        }
+      }
+    }
+  }
+</style>

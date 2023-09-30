@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Button from '../../components/Button.astro'
+import { getPortfolioById } from '../../services/api/portfolio'
+
+const { id } = Astro.params
+const data = await getPortfolioById(id)
+if(!data) return Astro.redirect("/")
+const { attributes: { title, description, image, url, skills } } = data
+
+export const prerender = false
+---
+
+<BaseLayout title={title}>
+  <section class="portfolio">
+    <div class="container">
+  { data ?
+        <h1 class="title" transition:name={`portfolio-${title}`}>
+        {title}.
+      </h1>
+      <div class="skills" transition:name={`skills-${title}`}>
+        {
+          skills.map((skill) => {
+            return <small>{skill}</small>
+          })
+        }
+      </div>
+      <div class="portfolio__content">
+        <img
+          src={image.data.attributes.url}
+          alt={title}
+          transition:name={`portfolio-${id}`}
+        />
+
+        <div class="content__box">
+          <p class="box__description">{description}</p>
+
+          <Button link={url} title="View page" />
+        </div>
+      </div> : <span>Error de peticion</span>
+  }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .portfolio {
+    .portfolio__content {
+      display: flex;
+      gap: 7em;
+      height: calc(100% - 120px);
+      padding: 2rem 0;
+
+      & img {
+        flex-basis: 70%;
+        border-radius: var(--border-radius);
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .content__box {
+        flex-basis: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 2em;
+
+        .box__description {
+          font-size: 0.875em;
+          line-height: 1.5em;
+        }
+      }
+    }
+  }
+</style>

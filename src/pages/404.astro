@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+
+<BaseLayout>
+  <section class="error">
+    <div class="container">
+      <div class="error__content">
+        <h1 class="title">404</h1>
+        <p>Page not found</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .error {
+    .error__content {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+</style>

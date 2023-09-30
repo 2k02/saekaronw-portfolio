@@ -1,0 +1,20 @@
+---
+const { link, title } = Astro.props
+---
+
+<a href={link} class="button__link">
+  {title}
+  <span>&#8594;</span>
+</a>
+
+<style>
+  .button__link {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-button);
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-button);
+  }
+</style>
