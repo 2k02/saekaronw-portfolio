@@ -4,8 +4,7 @@ import Footer from '@components/Footer.astro'
 
 import '../styles/global.css'
 
-
-const { title, namespace } = Astro.props
+const { title } = Astro.props
 ---
 
 <!doctype html>
@@ -27,5 +26,6 @@ const { title, namespace } = Astro.props
     <Header />
     <slot />
     <Footer />
+    <!-- <script src="../config/barba.js"></script> -->
   </body>
 </html>

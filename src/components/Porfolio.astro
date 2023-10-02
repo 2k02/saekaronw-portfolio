@@ -2,6 +2,7 @@
 import { getPortfolioById } from "@services/api/portfolio";
 import Button from "./Button.astro";
 
+
 const {portfolioId} = Astro.props
 const data = await getPortfolioById(portfolioId)
 if(!data) return Astro.redirect("/")
@@ -49,14 +50,14 @@ const { attributes: { title, description, image, url, skills } } = data
         object-fit: cover;
         width: 300px !important;
       }
-        
+
       .content__box {
         flex: 1 2 300px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         gap: 2em;
-        
+
         .box__description {
           font-size: 0.875em;
           line-height: 1.5em;
@@ -65,27 +66,28 @@ const { attributes: { title, description, image, url, skills } } = data
     }
   }
 
-  @media(100px <= width <= 600px){
-    .portfolio{
-      
-      .portfolio__content{
+  @media (100px <= width <= 600px) {
+    .portfolio {
+      .portfolio__content {
         gap: 3.2em;
-        
+
         .content__box {
           display: flex;
           flex-direction: row;
-          
-          .button__link{
+
+          .button__link {
             writing-mode: vertical-lr;
             width: initial;
             padding: 20px 10px;
+            justify-content: center;
+            align-items: center;
 
-            & span{
+            & span {
               margin-top: 10px;
             }
           }
         }
-      }    
-    } 
+      }
+    }
   }
 </style>

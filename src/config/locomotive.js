@@ -7,9 +7,5 @@ document.addEventListener('DOMContentLoaded', () => {
     direction: 'horizontal',
     draggingClass: 'has-scroll-dragging',
     repeat: true,
-    offset: ["30%",0]
   })
-  
-  const target = document.querySelector('#porfolio');
-  // scroll.scrollTo(target)
 })

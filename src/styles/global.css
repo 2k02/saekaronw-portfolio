@@ -4,7 +4,7 @@
   --bg-body-dark: #030004;
   --bg-breadcumbs1: #9189e6;
   --bg-breadcumbs2: #fff;
-  --bg-card-dark: #322C7B;
+  --bg-card-dark: #322c7b;
   --bg-green: #9fed61;
   --bg-white: #fff;
   --border-radius: 1em;
@@ -52,7 +52,6 @@ section {
   font-weight: 900;
 }
 
-
 .skills {
   margin-bottom: 0.5rem;
   display: flex;
@@ -63,24 +62,22 @@ section {
     color: var(--text-black);
     padding: 0.2rem 0.4rem;
     border-radius: 0.4rem;
-    
-    &:nth-child(2n){
+
+    &:nth-child(2n) {
       background-color: var(--bg-breadcumbs1);
     }
 
-    &:nth-child(2n + 1){
+    &:nth-child(2n + 1) {
       background-color: var(--bg-breadcumbs2);
     }
   }
 }
 
-
-
-@media(200px <= width <= 600px){
-  .container{
+@media (200px <= width <= 600px) {
+  .container {
     width: calc(100% - 40px);
   }
-  .title{
+  .title {
     font-size: 4em;
   }
 }
@@ -89,12 +86,12 @@ section {
   LOCOMOTIVE SCROLL CSS
 ====================*/
 
-.c-scrollbar_thumb{
+.c-scrollbar_thumb {
   background-color: #ddd;
 }
 
 .has-scroll-smooth [data-scroll-container] {
-  min-height: calc(100vh - 120px)
+  min-height: calc(100vh - 120px);
 }
 
 [data-scroll-direction='horizontal'] [data-scroll-container] {
