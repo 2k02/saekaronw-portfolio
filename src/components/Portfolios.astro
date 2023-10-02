@@ -1,13 +1,11 @@
 ---
-export const prerender = false
-
-import Button from './Button.astro'
-import { getPortfolios } from '../services/api/portfolio'
+import Button from '@components/Button.astro'
+import { getPortfolios } from '@services/api/portfolio'
 
 const { data } = (await getPortfolios()) ?? { data: null }
 ---
 
-<section class="portfolio">
+<section id="porfolio" class="portfolio" data-scroll-section>
   <div class="container">
     <div class="portfolio__content">
       <h1 class="title">Portfolio</h1>
@@ -16,18 +14,11 @@ const { data } = (await getPortfolios()) ?? { data: null }
           return (
             <div class="card">
               <div class="card-body">
-                <img
-                  src={image.data.attributes.url}
-                  alt={title}
-                  transition:name={`portfolio-${id}`}
-                />
+                <img src={image.data.attributes.url} alt={title} />
               </div>
               <div class="card__footer">
-                <h4 transition:name={`portfolio-${title}`}>{title}.</h4>
-                <div
-                  class="card__skills skills"
-                  transition:name={`skills-${title}`}
-                >
+                <h4>{title}.</h4>
+                <div class="card__skills skills">
                   {skills.map((skill) => {
                     return <small>{skill}</small>
                   })}
@@ -48,7 +39,6 @@ const { data } = (await getPortfolios()) ?? { data: null }
   .portfolio {
     .portfolio__content {
       min-width: 100%;
-      height: 100%;
       writing-mode: vertical-lr;
       display: grid;
       background-color: var(--bg-green);
@@ -66,6 +56,7 @@ const { data } = (await getPortfolios()) ?? { data: null }
         font-size: 6vh;
       }
       .card {
+        width: 100%;
         writing-mode: horizontal-tb;
         position: relative;
         overflow: hidden;
@@ -81,7 +72,7 @@ const { data } = (await getPortfolios()) ?? { data: null }
             object-fit: cover;
             object-position: top;
             border-radius: var(--border-radius);
-            transition: transform 0.3s ease;
+            transition: transform 0.7s ease;
           }
         }
 
@@ -92,7 +83,7 @@ const { data } = (await getPortfolios()) ?? { data: null }
           left: 0;
           bottom: -100%;
           background-color: var(--bg-card-dark);
-          transition: bottom 0.5s ease;
+          transition: bottom 0.7s ease;
           color: var(--color-white);
 
           .card__description {
@@ -104,7 +95,7 @@ const { data } = (await getPortfolios()) ?? { data: null }
 
         &:hover {
           & img {
-            transform: scale(1.1);
+            transform: scale(1.15);
           }
           .card__footer {
             bottom: 0;

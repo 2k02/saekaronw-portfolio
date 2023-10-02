@@ -1,21 +1,15 @@
 ---
-import About from "../components/About.astro";
-import Banner from "../components/Banner.astro";
-import Projects from "../components/Projects.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import About from "@components/About.astro";
+import Banner from "@components/Banner.astro";
+import Porfolios from "@components/Portfolios.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Portfolio">
-  <main>
-    <Banner />
-    <About />
-    <Projects/>
-  </main>
+ <main data-scroll-container>
+  <Banner />
+  <About />
+  <Porfolios/>
+ </main>
+ <script src='../config/locomotive.js'></script>
 </BaseLayout>
-
-<style>
-  main {
-		min-width: 300%;
-    display: flex;
-  }
-</style>

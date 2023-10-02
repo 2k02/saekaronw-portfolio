@@ -1,3 +1,5 @@
+@import 'locomotive-scroll/dist/locomotive-scroll.css';
+
 :root {
   --bg-body-dark: #030004;
   --bg-breadcumbs1: #9189e6;
@@ -17,14 +19,9 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--bg-body-dark);
   color: var(--color-white);
-  overflow: hidden;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -33,9 +30,9 @@ a {
 }
 
 section {
-  height: calc(100vh - 138px);
+  display: flex;
   width: 100vw;
-  margin: auto;
+  min-height: calc(100vh - 120px);
 }
 
 .container {
@@ -75,4 +72,32 @@ section {
       background-color: var(--bg-breadcumbs2);
     }
   }
+}
+
+
+
+@media(200px <= width <= 600px){
+  .container{
+    width: calc(100% - 40px);
+  }
+  .title{
+    font-size: 4em;
+  }
+}
+
+/*==================== 
+  LOCOMOTIVE SCROLL CSS
+====================*/
+
+.c-scrollbar_thumb{
+  background-color: #ddd;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: calc(100vh - 120px)
+}
+
+[data-scroll-direction='horizontal'] [data-scroll-container] {
+  height: calc(100vh - 120px);
+  display: block;
 }

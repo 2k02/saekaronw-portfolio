@@ -1,0 +1,91 @@
+---
+import { getPortfolioById } from "@services/api/portfolio";
+import Button from "./Button.astro";
+
+const {portfolioId} = Astro.props
+const data = await getPortfolioById(portfolioId)
+if(!data) return Astro.redirect("/")
+const { attributes: { title, description, image, url, skills } } = data
+---
+
+<section class="portfolio">
+  <div class="container">
+    { data ? (
+      <h1 class="title">{title}.</h1>
+      <div class="skills">
+        {skills.map((skill) => {
+          return <small>{skill}</small>
+        })}
+      </div>
+      <div class="portfolio__content">
+        <img
+        src={image.data.attributes.url}
+        alt={title}
+        />
+        <div class="content__box">
+          <p class="box__description">{description}</p>
+          <Button link={url} title="View page" />
+        </div>
+      </div>
+      ) : <span>Error de peticion</span>
+    }
+  </div>
+</section>
+
+<style>
+  .portfolio {
+    width: 100%;
+
+    .portfolio__content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7em;
+      padding: 2rem 0;
+
+      & img {
+        flex: 3 1 600px !important;
+        border-radius: var(--border-radius);
+        height: 100%;
+        object-fit: cover;
+        width: 300px !important;
+      }
+        
+      .content__box {
+        flex: 1 2 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 2em;
+        
+        .box__description {
+          font-size: 0.875em;
+          line-height: 1.5em;
+        }
+      }
+    }
+  }
+
+  @media(100px <= width <= 600px){
+    .portfolio{
+      
+      .portfolio__content{
+        gap: 3.2em;
+        
+        .content__box {
+          display: flex;
+          flex-direction: row;
+          
+          .button__link{
+            writing-mode: vertical-lr;
+            width: initial;
+            padding: 20px 10px;
+
+            & span{
+              margin-top: 10px;
+            }
+          }
+        }
+      }    
+    } 
+  }
+</style>

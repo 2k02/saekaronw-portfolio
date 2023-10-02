@@ -10,7 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^3.0.2",
-    "astro": "^3.1.2"
+    "@astrojs/netlify": "3.0.2",
+    "@barba/core": "^2.9.7",
+    "astro": "3.2.0",
+    "barba.js": "^1.0.0",
+    "gsap": "^3.12.2",
+    "locomotive-scroll": "^4.1.4"
   }
 }
