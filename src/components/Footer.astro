@@ -21,4 +21,12 @@ const isVisible = Astro.url.pathname === '/' ? true : false
       align-items: center;
     }
   }
+
+  @media (200px <= width <= 600px) {
+    .footer__content {
+      & span:nth-child(2) {
+        display: none;
+      }
+    }
+  }
 </style>

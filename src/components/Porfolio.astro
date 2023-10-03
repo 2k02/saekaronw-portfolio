@@ -68,7 +68,9 @@ const { attributes: { title, description, image, url, skills } } = data
 
   @media (100px <= width <= 600px) {
     .portfolio {
-      .portfolio__content {
+      .container{
+        height: calc(100% - 118px);
+        .portfolio__content {
         gap: 3.2em;
 
         .content__box {
@@ -79,7 +81,6 @@ const { attributes: { title, description, image, url, skills } } = data
             writing-mode: vertical-lr;
             width: initial;
             padding: 20px 10px;
-            justify-content: center;
             align-items: center;
 
             & span {
@@ -88,6 +89,8 @@ const { attributes: { title, description, image, url, skills } } = data
           }
         }
       }
+      }
+      
     }
   }
 </style>

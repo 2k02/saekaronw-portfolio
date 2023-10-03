@@ -122,4 +122,21 @@ const { data } = (await getPortfolios()) ?? { data: null }
       }
     }
   }
+
+  @media (200px <= width <= 600px){
+    .portfolio{
+      .container{
+        height: auto;
+        .portfolio__content{
+        writing-mode: initial;
+        grid-auto-rows: 45px auto;
+
+        .card{
+          grid-column: span 6 !important;
+          grid-row: span 6 !important;
+        }
+      }
+      }
+    }
+  }
 </style>

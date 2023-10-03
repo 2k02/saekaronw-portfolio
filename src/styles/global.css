@@ -80,6 +80,14 @@ section {
   .title {
     font-size: 4em;
   }
+  section{
+    .container{
+      height: calc(100vh - 70px);
+      padding-inline: 0px;
+
+      
+    }
+  }
 }
 
 /*==================== 
